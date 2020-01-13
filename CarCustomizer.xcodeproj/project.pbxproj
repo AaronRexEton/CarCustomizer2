@@ -15,6 +15,8 @@
 		93B386A623CB37E900EB1585 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93B386A423CB37E900EB1585 /* LaunchScreen.storyboard */; };
 		93B386B123CB37E900EB1585 /* CarCustomizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B386B023CB37E900EB1585 /* CarCustomizerTests.swift */; };
 		93B386BC23CB37E900EB1585 /* CarCustomizerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B386BB23CB37E900EB1585 /* CarCustomizerUITests.swift */; };
+		93B386CA23CB38F100EB1585 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B386C923CB38F100EB1585 /* Car.swift */; };
+		93B386CC23CB447900EB1585 /* StarterCars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B386CB23CB447900EB1585 /* StarterCars.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		93B386B723CB37E900EB1585 /* CarCustomizerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CarCustomizerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		93B386BB23CB37E900EB1585 /* CarCustomizerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCustomizerUITests.swift; sourceTree = "<group>"; };
 		93B386BD23CB37E900EB1585 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93B386C923CB38F100EB1585 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
+		93B386CB23CB447900EB1585 /* StarterCars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarterCars.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,8 @@
 				93B386A223CB37E900EB1585 /* Assets.xcassets */,
 				93B386A423CB37E900EB1585 /* LaunchScreen.storyboard */,
 				93B386A723CB37E900EB1585 /* Info.plist */,
+				93B386C923CB38F100EB1585 /* Car.swift */,
+				93B386CB23CB447900EB1585 /* StarterCars.swift */,
 			);
 			path = CarCustomizer;
 			sourceTree = "<group>";
@@ -261,6 +267,8 @@
 			files = (
 				93B3869E23CB37E800EB1585 /* ViewController.swift in Sources */,
 				93B3869A23CB37E800EB1585 /* AppDelegate.swift in Sources */,
+				93B386CA23CB38F100EB1585 /* Car.swift in Sources */,
+				93B386CC23CB447900EB1585 /* StarterCars.swift in Sources */,
 				93B3869C23CB37E800EB1585 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
