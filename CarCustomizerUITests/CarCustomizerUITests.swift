@@ -23,13 +23,66 @@ class CarCustomizerUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
+    func testWhenBoughtUltraSpeedPackageTurboBoostPackageIsDisabled() {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
+        
+        //act
+        app.switches["UltraSpeedSwitch"].tap()
+        app.switches["TurboBoostSwitch"].tap()
+        
+        //assert
+        XCTAssertEqual(app.switches["UltraSpeedSwitch"].isEnabled, true)
+        XCTAssertEqual(app.switches["TurboBoostSwitch"].isEnabled, false)
+        
 
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+    }
+    
+    func testWhenBoughtTurboBoostPackageUltraBoostPackageIsDisabled() {
+        // UI tests must launch the application that they test.
+        let app = XCUIApplication()
+        app.launch()
+        
+        //act
+        app.switches["TurboBoostSwitch"].tap()
+        app.switches["UltraSpeedSwitch"].tap()
+        
+        
+        //assert
+        XCTAssertEqual(app.switches["TurboBoostSwitch"].isEnabled, true)
+        XCTAssertEqual(app.switches["UltraSpeedSwitch"].isEnabled, false)
+    
+    
+        
+        
+
+        // Use recording to get started writing UI tests.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    }
+    
+    func testForNextCarButtonWorkingReseValues() {
+            let app = XCUIApplication()
+            app.launch()
+            
+            //act
+            app.switches["EngineAndExhaustSwitch"].tap()
+            app.switches["TiresSwitch"].tap()
+            app.switches["TurboBoostSwitch"].tap()
+            app.buttons["NextCar"].tap()
+            
+            //assert
+            
+            XCTAssertEqual(app.switches["EngineAndExhaustSwitch"].isEnabled, false)
+            XCTAssertEqual(app.switches["TiresSwitch"].isEnabled, false)
+            XCTAssertEqual(app.switches["TurboBoostSwitch"].isEnabled, false)
+            XCTAssertEqual(app.switches["UltraSpeedSwitch"].isEnabled, false)
+        XCTAssertEqual(app.staticTexts["remainingFunds"].label, "Remaining Funds: 2000")
+        
+        
+            
     }
 
     func testLaunchPerformance() {

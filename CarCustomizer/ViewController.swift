@@ -12,12 +12,15 @@ class ViewController: UIViewController {
     
     @IBOutlet var carStatistics: UILabel!
     
+    var timeRemaining = 30
     var remainingFunds = 2000 {
         didSet {
             remainingFundsDisplay.text = "Remaining Funds: \(remainingFunds)"
+            disableUnaffordablePackages()
         }
     }
     var starterCars = StarterCars()
+    var timer: Timer?
     var carIndex = 2
     var car: Car? {
         didSet {
@@ -32,12 +35,59 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         car = starterCars.cars[carIndex]
         remainingFundsDisplay.text = "Remaining Funds: \(remainingFunds)"
-        
+        resetDisplay()
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(countdown), userInfo: nil, repeats: true)
         /*if remainingFunds < 500 {
             engineAndExhaustPackage.isEnabled = false
         }*/
     
     
+    
+    }
+    
+    func resetDisplay() {
+        remainingFunds = 2000
+        timeRemaining = 30
+        engineAndExhaustPackage.setOn(false, animated: true)
+        tiresPackage.setOn(false, animated: true)
+        turboBoostPackage.setOn(false, animated: true)
+        ultraSpeedPackage.setOn(false, animated: true)
+        
+        
+    }
+    
+    func disableUnaffordablePackages() {
+        engineAndExhaustPackage.isEnabled = shouldBeEnabled(engineAndExhaustPackage)
+        tiresPackage.isEnabled = shouldBeEnabled(engineAndExhaustPackage)
+        ultraSpeedPackage.isEnabled = shouldBeEnabled(ultraSpeedPackage)
+        turboBoostPackage.isEnabled = shouldBeEnabled(turboBoostPackage)
+    }
+    
+    func shouldBeEnabled(_ control: UISwitch) -> Bool {
+        if control.isOn {
+            return true
+        } else {
+            if remainingFunds >= 1500 {
+                return true
+            } else if remainingFunds >= 1000 {
+                let name = control.accessibilityIdentifier
+                if name == "UltraSpeedSwitch" {
+                    return false
+                } else {
+                    return false
+                }
+                
+            } else if remainingFunds >= 500 {
+                let name = control.accessibilityIdentifier
+                if name == "TurboBoostSwitch" && name == "UltraSpeedSwitch" {
+                    return false
+                } else {
+                    return true
+                }
+            } else {
+                return false
+            }
+        }
     }
     
     @IBOutlet var ultraSpeedPackage: UISwitch!
@@ -48,6 +98,7 @@ class ViewController: UIViewController {
     
     @IBOutlet var engineAndExhaustPackage: UISwitch!
     
+    @IBOutlet var RemainingTimeDisplay: UILabel!
     
     @IBAction func nextCar(_ sender: Any) {
 
@@ -57,7 +108,7 @@ class ViewController: UIViewController {
             carIndex = 0
         }
         car = starterCars.cars[carIndex]
-        
+        resetDisplay()
        
     
     }
@@ -86,11 +137,6 @@ class ViewController: UIViewController {
     }
     
     
-   
-    
-    func updateDisplay() {
-        carStatistics.text = car?.displayStats()
-    }
 
     @IBAction func engineAndExhaustToggle(_ sender: Any) {
         let price = 500
@@ -156,7 +202,7 @@ class ViewController: UIViewController {
         let price = 1500
         checkFunds()
         
-        /*if remainingFunds <= 0 {
+        /* if remainingFunds <= 0 {
     
         } */
         if ultraSpeedPackage.isOn {
@@ -171,6 +217,24 @@ class ViewController: UIViewController {
       
     }
     
+    @objc func countdown() {
+        if timeRemaining > 0 {
+            timeRemaining -= 1
+            RemainingTimeDisplay.text = "\(timeRemaining)"
+        } else {
+            timer?.invalidate()
+            ultraSpeedPackage.isEnabled = false
+            tiresPackage.isEnabled = false
+
+            turboBoostPackage.isEnabled = false
+
+            engineAndExhaustPackage.isEnabled = false
+
+
+            
+            
+        }
+    }
     
 }
 
